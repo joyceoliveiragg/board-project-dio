@@ -1,0 +1,42 @@
+version: '3.8'
+
+services:
+  mysql-dio:
+    image: mysql:8.0
+    container_name: mysql-dio
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: dio
+      MYSQL_USER: board
+      MYSQL_PASSWORD: 1board23
+    ports:
+      - "${MYSQL_PORT:-3307}:3306"
+
+    volumes:
+      - mysql_data:/var/lib/mysql
+    healthcheck:
+      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost", "-uuser", "-ppassword" ]
+      interval: 5s
+      timeout: 5s
+      retries: 30
+
+
+    networks:
+      - dio-network
+
+  app:
+    build: .
+    container_name: dio-app
+    depends_on:
+      mysql-dio:
+        condition: service_healthy
+    ports:
+      - "8080:8080"
+    networks:
+      - dio-network
+
+volumes:
+  mysql_data:
+
+networks:
+  dio-network:

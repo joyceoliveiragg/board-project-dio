@@ -1,41 +1,38 @@
 plugins {
-	id("org.springframework.boot") version "3.2.0"
-	id("io.spring.dependency-management") version "1.1.4"
 	id("java")
 }
 
 group = "br.com.dio"
-version = "0.0.1-SNAPSHOT"
-
-java {
-	sourceCompatibility = JavaVersion.VERSION_17
-}
-
-configurations {
-	compileOnly {
-		extendsFrom(configurations.annotationProcessor.get())
-	}
-}
+version = "1.0-SNAPSHOT"
 
 repositories {
 	mavenCentral()
 }
 
 dependencies {
-	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
-	implementation("org.springframework.boot:spring-boot-starter-web")
-	implementation("org.springframework.boot:spring-boot-starter-validation")
-	implementation("org.liquibase:liquibase-core")
+	implementation("org.liquibase:liquibase-core:4.29.1")
+	implementation("mysql:mysql-connector-java:8.0.33")
+	implementation("org.projectlombok:lombok:1.18.34")
 
-	compileOnly("org.projectlombok:lombok")
-	annotationProcessor("org.projectlombok:lombok")
-
-	runtimeOnly("com.mysql:mysql-connector-j")
-
-	testImplementation("org.springframework.boot:spring-boot-starter-test")
-	testImplementation("com.h2database:h2")
+	annotationProcessor("org.projectlombok:lombok:1.18.34")
 }
 
-tasks.withType<Test> {
+tasks.test {
 	useJUnitPlatform()
+}
+
+tasks.jar {
+	archiveBaseName.set("app")
+	archiveVersion.set("")
+	archiveClassifier.set("")
+
+	duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+
+	manifest {
+		attributes["Main-Class"] = "br.com.dio.Main"
+	}
+
+	from({
+		configurations.runtimeClasspath.get().filter { it.exists() }.map { if (it.isDirectory) it else zipTree(it) }
+	})
 }
