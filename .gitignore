@@ -13,24 +13,6 @@ npm-debug.log.*
 ######################
 .sass-cache/
 
-######################
-# Eclipse
-######################
-*.pydevproject
-.project
-.metadata
-tmp/
-tmp/**/*
-*.tmp
-*.bak
-*.swp
-*~.nib
-local.properties
-.classpath
-.settings/
-.loadpath
-.factorypath
-
 # External tool builders
 .externalToolBuilders/**
 
@@ -151,3 +133,9 @@ Desktop.ini
 ######################
 coverage/
 .nyc_output/
+
+# SonarQube config (ignore se for local)
+sonar-project.properties
+
+# IntelliJ extensions
+.idea/**/extensions/
