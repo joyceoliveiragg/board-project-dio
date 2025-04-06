@@ -1,42 +1,29 @@
 version: '3.8'
-
 services:
-  mysql-dio:
-    image: mysql:8.0
-    container_name: mysql-dio
+  postgres-dio:
+    image: postgres:16
+    container_name: postgres-dio
     environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: dio
-      MYSQL_USER: board
-      MYSQL_PASSWORD: 1board23
+      POSTGRES_DB: dio
+      POSTGRES_USER: board
+      POSTGRES_PASSWORD: 1board23
     ports:
-      - "${MYSQL_PORT:-3307}:3306"
-
+      - "5432:5432"
     volumes:
-      - mysql_data:/var/lib/mysql
-    healthcheck:
-      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost", "-uuser", "-ppassword" ]
-      interval: 5s
-      timeout: 5s
-      retries: 30
-
-
+      - pgdata:/var/lib/postgresql/data
     networks:
       - dio-network
 
-  app:
+  dio-app:
     build: .
-    container_name: dio-app
     depends_on:
-      mysql-dio:
-        condition: service_healthy
-    ports:
-      - "8080:8080"
+      - postgres-dio
     networks:
       - dio-network
 
 volumes:
-  mysql_data:
+  pgdata:
 
 networks:
   dio-network:
+    driver: bridge

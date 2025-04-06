@@ -1,141 +1,80 @@
 ######################
-# Node
+# Java / Gradle
 ######################
-/node/
-node_tmp/
-node_modules/
-npm-debug.log.*
-/.awcache/*
-/.cache-loader/*
+.gradle/
+build/
+buildSrc/.gradle/
+buildSrc/build/
+!gradle/wrapper/gradle-wrapper.jar # garante que o wrapper do gradle seja versionado
+*.class
+*.jar
+*.war
+*.ear
 
 ######################
-# SASS
-######################
-.sass-cache/
-
-# External tool builders
-.externalToolBuilders/**
-
-# Locally stored "Eclipse launch configurations"
-*.launch
-
-# CDT-specific
-.cproject
-
-# PDT-specific
-.buildpath
-
-# STS-specific
-/.sts4-cache/*
-
+# IDEs
 ######################
 # IntelliJ
-######################
 .idea/
 *.iml
 *.iws
 *.ipr
-*.ids
-*.orig
-classes/
-out/
 
-######################
-# Visual Studio Code
-######################
-.vscode/*
-!.vscode/settings.json
-!.vscode/tasks.json
-!.vscode/launch.json
-!.vscode/extensions.json
+# VSCode
+.vscode/
 *.code-workspace
 
-######################
-# Maven
-######################
-/log/
-/target/
+# Eclipse
+.project
+.classpath
+.cproject
+.settings/
+.externalToolBuilders/
+
+# STS
+.sts4-cache/
 
 ######################
-# Gradle
+# Node (se usar frontend junto)
 ######################
-.gradle/
-/build/
-/buildSrc/.gradle/
-/buildSrc/build/
+/node_modules/
+/node/
+/npm-debug.log*
 
 ######################
-# Package Files
-######################
-*.jar
-*.war
-*.ear
-*.db
-
-######################
-# Windows
-######################
-# Windows image file caches
-Thumbs.db
-
-# Folder config file
-Desktop.ini
-
-######################
-# Mac OSX
+# Mac / Windows / Linux
 ######################
 .DS_Store
+Thumbs.db
+Desktop.ini
 .svn
-
-# Thumbnails
 ._*
-
-# Files that might appear on external disk
 .Spotlight-V100
 .Trashes
 
 ######################
-# Directories
+# Outros
 ######################
-/bin/
-/deploy/
+*.log
+*.orig
+*~ # arquivos temporários de edição
+*.merge_file*
 
 ######################
-# Logs
+# SQL / Configs (manter)
 ######################
-*.log*
+!.env
+!*.sql
+!*.properties
+!*.yml
+!*.yaml
+!Dockerfile
+!docker-compose.yml
+
+# Se estiver usando Liquibase
+!src/main/resources/db/changelog/**
 
 ######################
-# Others
+# src (mantém tudo)
 ######################
-*.class
-*.*~
-*~
-.merge_file*
-
-######################
-# Gradle Wrapper
-######################
-!gradle/wrapper/gradle-wrapper.jar
-
-######################
-# Maven Wrapper
-######################
-!.mvn/wrapper/maven-wrapper.jar
-
-######################
-# ESLint
-######################
-.eslintcache
-
-######################
-# Code coverage
-######################
-coverage/
-.nyc_output/
-
-# SonarQube config (ignore se for local)
-sonar-project.properties
-
-# IntelliJ extensions
-.idea/**/extensions/
+!src/**
