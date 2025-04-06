@@ -1,3 +1,11 @@
 databaseChangeLog:
-  - includeAll:
-      path: db/changelog/migrations
+  - include:
+      file: db/changelog/migrations/db.changelog-202408191938-create-boards-table.sql
+        - include:
+            file: db/changelog/migrations/db.changelog-202408191938-create-boards-columns-table.sql
+        - include:
+            file: db/changelog/migrations/db.changelog-202408191938-create-cards-table.sql
+        - include:
+            file: db/changelog/migrations/db.changelog-202408211005.sql
+        - include:
+            file: db/changelog/migrations/db.changelog-202408281807.sql
