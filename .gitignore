@@ -1,21 +1,24 @@
-######################
+#############################
 # Java / Gradle
-######################
-.gradle/
-build/
-buildSrc/.gradle/
-buildSrc/build/
-!gradle/wrapper/gradle-wrapper.jar # garante que o wrapper do gradle seja versionado
+#############################
 *.class
 *.jar
 *.war
 *.ear
 
-######################
+# Diretórios de build
+/build/
+/.gradle/
+
+# Gradle Wrapper (mantém apenas o jar necessário)
+!gradle1/wrapper/gradle-wrapper.jar
+gradle1/wrapper/gradle-wrapper.properties
+
+#############################
 # IDEs
-######################
-# IntelliJ
-.idea/
+#############################
+# IntelliJ IDEA
+.idea1/
 *.iml
 *.iws
 *.ipr
@@ -24,45 +27,44 @@ buildSrc/build/
 .vscode/
 *.code-workspace
 
-# Eclipse
+# Eclipse / STS
 .project
 .classpath
 .cproject
 .settings/
 .externalToolBuilders/
-
-# STS
 .sts4-cache/
 
-######################
-# Node (se usar frontend junto)
-######################
+#############################
+# Arquivos temporários e logs
+#############################
+*.log
+*.log.*
+*.tmp
+*.orig
+*~
+*.merge_file*
+
+#############################
+# Sistema Operacional
+#############################
+.DS_Store
+._*
+.Spotlight-V100
+.Trashes
+Thumbs.db
+Desktop.ini
+
+#############################
+# Node.js (caso use no futuro)
+#############################
 /node_modules/
 /node/
 /npm-debug.log*
 
-######################
-# Mac / Windows / Linux
-######################
-.DS_Store
-Thumbs.db
-Desktop.ini
-.svn
-._*
-.Spotlight-V100
-.Trashes
-
-######################
-# Outros
-######################
-*.log
-*.orig
-*~ # arquivos temporários de edição
-*.merge_file*
-
-######################
-# SQL / Configs (manter)
-######################
+#############################
+# Arquivos que DEVEM ser versionados
+#############################
 !.env
 !*.sql
 !*.properties
@@ -70,11 +72,11 @@ Desktop.ini
 !*.yaml
 !Dockerfile
 !docker-compose.yml
+!wait-for-it.sh
+!sonar-project.properties
 
-# Se estiver usando Liquibase
-!src/main/resources/db/changelog/**
-
-######################
-# src (mantém tudo)
-######################
-!src/**
+#############################
+# Maven (caso ainda tenha vestígios)
+#############################
+target/
+pom.xml
