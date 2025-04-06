@@ -12,4 +12,5 @@ CREATE TABLE BOARDS_COLUMNS
     CONSTRAINT boards__boards_columns_fk FOREIGN KEY (board_id) REFERENCES BOARDS (id) ON DELETE CASCADE,
     CONSTRAINT unique_board_id_order UNIQUE (board_id, "order")
 );
+
 --rollback DROP TABLE BOARDS_COLUMNS

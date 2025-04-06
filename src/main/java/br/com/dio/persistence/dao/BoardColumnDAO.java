@@ -20,7 +20,7 @@ public class BoardColumnDAO {
     private final Connection connection;
 
     public BoardColumnEntity insert(final BoardColumnEntity entity) throws SQLException {
-        var sql = "INSERT INTO BOARDS_COLUMNS (name, \"order\", kind, board_id) VALUES (?, ?, ?, ?) RETURNING id;";
+        var sql = "INSERT INTO boards_columns (name, \"order\", kind, board_id) VALUES (?, ?, ?, ?) RETURNING id;";
         try (var statement = connection.prepareStatement(sql)) {
             var i = 1;
             statement.setString(i++, entity.getName());
@@ -38,7 +38,7 @@ public class BoardColumnDAO {
 
     public List<BoardColumnEntity> findByBoardId(final Long boardId) throws SQLException {
         List<BoardColumnEntity> entities = new ArrayList<>();
-        var sql = "SELECT id, name, \"order\", kind FROM BOARDS_COLUMNS WHERE board_id = ? ORDER BY \"order\"";
+        var sql = "SELECT id, name, \"order\", kind FROM boards_columns WHERE board_id = ? ORDER BY \"order\"";
         try (var statement = connection.prepareStatement(sql)) {
             statement.setLong(1, boardId);
             var resultSet = statement.executeQuery();
@@ -64,7 +64,7 @@ public class BoardColumnDAO {
                        (SELECT COUNT(c.id)
                           FROM CARDS c
                          WHERE c.board_column_id = bc.id) AS cards_amount
-                  FROM BOARDS_COLUMNS bc
+                  FROM boards_columns bc
                  WHERE board_id = ?
                  ORDER BY "order";
                 """;
@@ -92,7 +92,7 @@ public class BoardColumnDAO {
                        c.id,
                        c.title,
                        c.description
-                  FROM BOARDS_COLUMNS bc
+                  FROM boards_columns bc
                   LEFT JOIN CARDS c
                     ON c.board_column_id = bc.id
                  WHERE bc.id = ?;

@@ -1,7 +1,7 @@
-
 version: '3.8'
+
 services:
-  db:
+  board_postgres:
     image: postgres
     container_name: board_postgres
     environment:
@@ -14,18 +14,28 @@ services:
       - db_data:/var/lib/postgresql/data
     networks:
       - board-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
 
-  app:
+  board_app:
     build: .
     container_name: board_app
     depends_on:
-      - db
+      board_postgres:
+        condition: service_healthy
     ports:
       - "8080:8080"
     environment:
-      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/boarddb
+      SPRING_DATASOURCE_URL: jdbc:postgresql://board_postgres:5432/boarddb
       SPRING_DATASOURCE_USERNAME: postgres
       SPRING_DATASOURCE_PASSWORD: postgres
+      SPRING_LIQUIBASE_DROP-FIRST: true
+    volumes:
+      - ./wait-for-it.sh:/wait-for-it.sh
+    command: [ "sh", "/wait-for-it.sh", "board_postgres:5432", "--", "java", "-jar", "app.jar" ]
     stdin_open: true
     tty: true
     networks:

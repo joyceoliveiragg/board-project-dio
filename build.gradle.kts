@@ -1,4 +1,6 @@
 plugins {
+	id("org.springframework.boot") version "3.2.5"
+	id("io.spring.dependency-management") version "1.1.4"
 	java
 	application
 }
@@ -17,7 +19,15 @@ java {
 }
 
 dependencies {
-	implementation("org.liquibase:liquibase-core:4.29.1")
+	implementation("org.springframework.boot:spring-boot-starter")
+	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
+	implementation("org.liquibase:liquibase-core")
+	implementation("org.postgresql:postgresql:42.7.3")
+
+	implementation("org.projectlombok:lombok:1.18.34")
+	annotationProcessor("org.projectlombok:lombok:1.18.34")
+
+	implementation("org.liquibase:liquibase-core")
 	implementation("org.projectlombok:lombok:1.18.34")
 	implementation("org.postgresql:postgresql:42.7.3")
 	annotationProcessor("org.projectlombok:lombok:1.18.34")
