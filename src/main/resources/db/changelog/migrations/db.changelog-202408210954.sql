@@ -3,7 +3,7 @@
 --comment: boards_columns table create
 
 CREATE TABLE BOARDS_COLUMNS(
-    id BIGINT SERIAL PRIMARY KEY,
+    id BIGSERIAL PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
     `order` int NOT NULL,
     kind VARCHAR(7) NOT NULL,

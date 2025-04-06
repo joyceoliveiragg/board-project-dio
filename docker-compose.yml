@@ -13,6 +13,8 @@ services:
       - pgdata:/var/lib/postgresql/data
     networks:
       - dio-network
+    stdin_open: true
+    tty: true
 
   dio-app:
     build: .

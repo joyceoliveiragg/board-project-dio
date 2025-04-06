@@ -3,7 +3,7 @@
 --comment: blocks table create
 
 CREATE TABLE BLOCKS(
-    id BIGINT SERIAL PRIMARY KEY,
+    id BIGSERIAL PRIMARY KEY,
     blocked_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     block_reason VARCHAR(255) NOT NULL,
     unblocked_at TIMESTAMP NULL,
