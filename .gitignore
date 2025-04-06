@@ -1,82 +1,21 @@
-#############################
-# Java / Gradle
-#############################
-*.class
-*.jar
-*.war
-*.ear
 
-# Diretórios de build
-/build/
-/.gradle/
-
-# Gradle Wrapper (mantém apenas o jar necessário)
+### Gradle ###
+.gradle
+build/
 !gradle/wrapper/gradle-wrapper.jar
-gradle/wrapper/gradle-wrapper.properties
 
-#############################
-# IDEs
-#############################
-# IntelliJ IDEA
-.idea/
+### IntelliJ IDEA ###
 *.iml
-*.iws
-*.ipr
+.idea/
+out/
 
-# VSCode
-.vscode/
-*.code-workspace
-
-# Eclipse / STS
-.project
-.classpath
-.cproject
-.settings/
-.externalToolBuilders/
-.sts4-cache/
-
-#############################
-# Arquivos temporários e logs
-#############################
+### Logs ###
 *.log
-*.log.*
-*.tmp
-*.orig
-*~
-*.merge_file*
 
-#############################
-# Sistema Operacional
-#############################
+### Docker ###
+*.env
+docker-compose.override.yml
+
+### OS generated files ###
 .DS_Store
-._*
-.Spotlight-V100
-.Trashes
 Thumbs.db
-Desktop.ini
-
-#############################
-# Node.js (caso use no futuro)
-#############################
-/node_modules/
-/node/
-/npm-debug.log*
-
-#############################
-# Arquivos que DEVEM ser versionados
-#############################
-!.env
-!*.sql
-!*.properties
-!*.yml
-!*.yaml
-!Dockerfile
-!docker-compose.yml
-!wait-for-it.sh
-!sonar-project.properties
-
-#############################
-# Maven (caso ainda tenha vestígios)
-#############################
-target/
-pom.xml
