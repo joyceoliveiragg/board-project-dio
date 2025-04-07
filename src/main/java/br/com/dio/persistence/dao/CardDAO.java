@@ -19,7 +19,7 @@ public class CardDAO {
     private Connection connection;
 
     public CardEntity insert(final CardEntity entity) throws SQLException {
-        var sql = "INSERT INTO cards (title, description, board_column_id) values (?, ?, ?);";
+        var sql = "INSERT INTO CARDS (title, description, board_column_id) values (?, ?, ?);";
         try (var statement = connection.prepareStatement(sql)) {
             var i = 1;
             statement.setString(i++, entity.getTitle());
@@ -36,7 +36,7 @@ public class CardDAO {
     }
 
     public List<CardDetailsDTO> findByPriorityOrTags(final String priority, final List<String> tags) throws SQLException {
-        var sql = new StringBuilder("SELECT * FROM cards WHERE 1=1 ");
+        var sql = new StringBuilder("SELECT * FROM CARDS WHERE 1=1 ");
         if (priority != null && !priority.isEmpty()) {
             sql.append("AND priority = ? ");
         }

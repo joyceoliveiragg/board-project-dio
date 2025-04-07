@@ -1,6 +1,6 @@
 --liquibase formatted sql
 --changeset junior:202408191938
---comment: blocks table create
+--comment: BLOCKS table create
 
 CREATE TABLE BLOCKS(
     id BIGSERIAL PRIMARY KEY,
