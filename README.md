@@ -1,73 +1,113 @@
-# TaskBoard
 
-Este é o TaskBoard, um sistema simplificado de gerenciamento de tarefas baseado em quadros, colunas e cartões. Ele foi adaptado e personalizado para manter a funcionalidade essencial de um kanban digital, com ênfase em organização e clareza no código.
+# 🧩 Board Project - DIO
 
-## ⚙️ Estrutura do Projeto
-
-A estrutura segue um modelo tradicional com as seguintes entidades principais:
-
-- **Board**: representa o quadro principal de tarefas.
-- **Column**: colunas dentro do quadro (ex: To Do, Doing, Done).
-- **Card**: tarefa em si, com campos adicionais como prioridade e tags.
-- **CardMovement**: histórico de movimentações dos cartões.
-- **CardBlock**: permite bloqueio temporário dos cartões por usuários.
-
-Campos adicionais incluídos:
-- `Card.priority`: low, medium, high.
-- `Card.tags`: lista de tags.
-- `CardBlock.blockedByUser`: usuário responsável pelo bloqueio.
-
-Funcionalidades diferenciadas:
-- Filtro por prioridade ou tags.
-- Restrições de movimentação (ex: não mover mais de uma vez em 10 segundos).
-- Interface visual diferenciada (layout lateral, nova paleta de cores).
-
-## 🧪 Executando o Projeto
-
-Requisitos:
-- Java 17+
-- Node.js (para frontend, se aplicável)
-- Docker (para serviços auxiliares como banco de dados)
-
-### Desenvolvimento
-
-```bash
-./mvnw
-```
-
-### Testes
-
-```bash
-./mvnw verify
-```
-
-### Construção para Produção
-
-```bash
-./mvnw -Pprod clean verify
-```
-
-### Execução do JAR
-
-```bash
-java -jar target/*.jar
-```
-
-A aplicação estará disponível em: [http://localhost:8080](http://localhost:8080)
-
-## 🐳 Suporte a Docker
-
-```bash
-docker compose -f src/main/docker/app.yml up -d
-```
-
-## 📁 Localização dos Arquivos
-
-- `src/main/java`: código backend (entidades, repositórios, serviços, etc).
-- `src/main/resources`: arquivos de configuração (application.yml, etc).
-- `src/test/java`: testes automatizados.
-- `src/main/webapp` (se existir): frontend Angular.
+Este projeto é uma aplicação de gerenciamento de quadros (boards), desenvolvida como estudo prático com base em um desafio da Digital Innovation One (DIO). Utiliza **Java**, **PostgreSQL** e **Docker** para simular uma estrutura de aplicação real.
 
 ---
 
-Este projeto foi iniciado com JHipster mas adaptado para ser mais leve, modular e focado nas funcionalidades essenciais de um task board.
+## 🚀 Tecnologias Utilizadas
+
+- Java 21
+- Gradle
+- PostgreSQL
+- Docker e Docker Compose
+- JDBC
+- Liquibase (para versionamento de banco)
+
+---
+
+## 📁 Estrutura do Projeto
+
+```
+├── src
+│   └── main/java/br/com/dio
+│       ├── Main.java
+│       ├── persistence
+│       │   ├── config/ConnectionConfig.java
+│       │   ├── entity
+│       │   ├── repository
+│       │   └── service
+│       └── utils
+├── build.gradle.kts
+├── docker-compose.yml
+└── README.md
+```
+
+---
+
+## ⚙️ Como Rodar o Projeto
+
+### 1. 🔄 Limpar e compilar o projeto
+
+```bash
+./gradlew clean build
+```
+
+### 2. 🐳 Subir os containers com Docker Compose
+
+```bash
+docker-compose up -d
+```
+
+Isso criará o serviço PostgreSQL no container `board_postgres`.
+
+### 3. ✅ Verificar se o banco está rodando
+
+```bash
+docker ps
+```
+
+---
+
+## 📦 Rodar o .JAR da aplicação
+
+Após compilar, rode:
+
+```bash
+java -jar build/libs/app.jar
+```
+
+A aplicação tentará se conectar ao banco PostgreSQL no container Docker.
+
+---
+
+## 🐘 Configuração do PostgreSQL
+
+Certifique-se que o host do banco seja o mesmo do container Docker.
+
+### Exemplo no `ConnectionConfig.java`:
+
+```java
+String url = "jdbc:postgresql://localhost:5432/postgres";
+```
+
+Caso esteja rodando **dentro de um container** com rede, use:
+
+```java
+String url = "jdbc:postgresql://board_postgres:5432/postgres";
+```
+
+---
+
+## 📄 Scripts de Banco
+
+Scripts de criação de tabelas e dados iniciais são gerenciados com **Liquibase**, dentro do projeto.
+
+---
+
+## ✅ Objetivo
+
+Aprender na prática como:
+
+- Configurar uma aplicação Java com banco de dados
+- Utilizar Docker e Docker Compose
+- Gerenciar estrutura de banco com Liquibase
+- Rodar aplicações com `.jar` e conectar com containers externos
+
+---
+
+## 📚 Créditos
+
+Baseado no projeto do repositório oficial da DIO com personalizações para prática e estudo individual.
+
+---
